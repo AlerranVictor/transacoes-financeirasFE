@@ -1,0 +1,70 @@
+<header>
+    <h2>FinPainel</h2>
+    <img src="/assets/img/hamburguer-button.png" alt="" height="25px" width="30px">
+</header>
+<main>
+    <section class="inputs-info">
+        <div class="formulario">
+            <div>
+                <label>Tipo</label>
+                <div>
+                    <div class="labelsTipo">
+                        <label for="receita">Receita</label>
+                        <input type="radio" id="receita" name="tipo" [(ngModel)]="tipoTransacao" value="Receita">
+                    </div>
+                    <div class="labelsTipo">
+                        <label for="despesa">Despesa</label>
+                        <input type="radio" id="despesa" name="tipo" [(ngModel)]="tipoTransacao" value="Despesa">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label for="">Categoria</label>
+                <input type="text" [(ngModel)]="categoria" maxlength="25" placeholder="Ex: Aluguel, luz...">
+            </div>
+            <div>
+                <label for="">Valor</label>
+                <input type="number" step="0.01" [(ngModel)]="valor" placeholder="0,00">
+            </div>
+        </div>
+        <div class="botao">
+            <button (click)="enviarTransacao(categoria, valor)">SALVAR</button>
+        </div>
+    </section>
+
+    <section>
+        <div class="resultados">
+            <div class="receitas">
+                <p class="tipo">Receitas</p>
+                <div *ngFor="let transacao of listaTransacoes?.receitas" (click)="pegarTransacaoEMostrarExclusao(transacao)">
+                    <p>{{transacao.categoria}}</p>
+                    <p>{{transacao.valorFormatado}}</p>
+                </div>
+            </div>
+            <div class="despesas">
+                <p class="tipo">Despesas</p>
+                <div *ngFor="let transacao of listaTransacoes?.despesas" (click)="pegarTransacaoEMostrarExclusao(transacao)">
+                    <p>{{transacao.categoria}}</p>
+                    <p>{{transacao.valorFormatado}}</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="total">
+            
+        </div>
+
+        <div class="excluirTransacao" *ngIf="mostrarExclusao">
+            <div class="fecharExclusao">
+                <h3 (click)="mostrarExclusao = false">X</h3>
+            </div>
+            <div>
+                <p>Deseja excluir a transacao: {{transacaoToDelete?.categoria}}?</p>
+            </div>
+            <div class="excluir">
+                <button (click)="excluirTransacao()">Excluir transação</button>
+            </div>
+        </div>
+
+    </section>
+</main>
