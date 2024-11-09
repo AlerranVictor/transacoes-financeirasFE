@@ -22,138 +22,143 @@ main
     background-color: $bg-color
     height: calc( 100vh - 60px )
 
-    .inputs-info
+.inputs-info
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    background-color: #686D76
+    border-radius: 9px
+    padding: 20px
+    width: 250px
+    height: 300px
+    box-shadow: -4px 4px 3px 0px rgba(0,0,0,0.1)
+
+    .formulario
         display: flex
         flex-direction: column
-        justify-content: center
-        align-items: center
-        background-color: #686D76
-        border-radius: 9px
-        padding: 20px
-        width: 250px
-        height: 300px
-        box-shadow: -4px 4px 3px 0px rgba(0,0,0,0.1)
+        justify-content: space-around
+        align-items: flex-start
+        height: 100%
+        width: 100%
 
-        .formulario
+        div
             display: flex
             flex-direction: column
-            justify-content: space-around
-            align-items: flex-start
-            height: 100%
             width: 100%
-
             div
                 display: flex
-                flex-direction: column
-                width: 100%
-                div
-                    display: flex
-                    flex-direction: row
-                    justify-content: space-around
-                    .labelsTipo
-                        width: 50%
-                        justify-content: flex-start
-                        label
-                            font-family: serif
-                            margin-right: 10px
-                        input
-                            width: 17px
-                            &:hover
-                                cursor: pointer
-                label
-                    color: #FFFFFF
-                    font-family: "Amaranth", serif
-                    font-weight: 500
-                    margin-top: 8px
-                    margin-bottom: 8px
-                input
-                    background-color: #FFFFFF
-                    border: 0px
-                    padding: 5px 0px 5px 4px
-                    border-radius: 2px
-                    width: calc( 100% - 4px )
-
-        .botao
-            display: flex
-            align-items: center
-            justify-content: center
-            margin-top: 20px
-            button
-                background-color: #DC5F00
-                border: 0px
-                border-radius: 4px
-                padding: 5px 10px
+                flex-direction: row
+                justify-content: space-around
+                .labelsTipo
+                    width: 50%
+                    justify-content: flex-start
+                    label
+                        font-family: serif
+                        margin-right: 10px
+                    input
+                        width: 17px
+                        &:hover
+                            cursor: pointer
+            label
                 color: #FFFFFF
-                font-family: "Changa One", serif
-    section
+                font-family: "Amaranth", serif
+                font-weight: 500
+                margin-top: 8px
+                margin-bottom: 8px
+            input
+                background-color: #FFFFFF
+                border: 0px
+                padding: 5px 0px 5px 4px
+                border-radius: 2px
+                width: calc( 100% - 4px )
+
+    .botao
+        display: flex
+        align-items: center
+        justify-content: center
+        margin-top: 20px
+        button
+            background-color: #DC5F00
+            border: 0px
+            border-radius: 4px
+            padding: 5px 10px
+            color: #FFFFFF
+            font-family: "Changa One", serif
+
+.resultados-section
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    width: 350px
+    height: 80%
+    border: 1px solid black
+    border-radius: 9px
+    padding: 10px
+    background-color: $bg-color
+    box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.1)
+    .tipo
+        font-weight: 900
+        border-bottom: 1px solid black
+    .resultados
         display: flex
         flex-direction: column
-        width: 350px
-        height: 80%
-        border: 1px solid black
-        border-radius: 9px
-        padding: 10px
-        background-color: $bg-color
-        box-shadow: 4px 4px 3px 0px rgba(0,0,0,0.1)
-        .tipo
-            font-weight: 900
-            border-bottom: 1px solid black
-        .resultados
-            display: flex
-            flex-direction: column
-            align-items: center
+        width: 100%
+        justify-content: space-around
+        .campo-receitas
             width: 100%
-            justify-content: space-around
-            .receitas
-                width: 100%
-                flex-direction: column
-                margin-bottom: 10px
-                div
-                    display: flex
-                    justify-content: space-between
-                    align-items: center
-                    padding-left: 5px
-                    &:hover
-                        color: red
-                        cursor: pointer
-            .despesas
-                width: 100%
-                flex-direction: column
-                div
-                    padding-left: 2px
-                    display: flex
-                    justify-content: space-between
-                    align-items: center
-                    padding-left: 5px
-                    &:hover
-                        color: red
-                        cursor: pointer
-        .excluirTransacao
-            width: auto
-            height: auto
-            padding: 10px
-            display: flex
             flex-direction: column
-            position: absolute
-            top: 40%
-            left: 50%
-            background-color: #a3a5aa
-            border-radius: 8px
-            .fecharExclusao
+            margin-bottom: 10px
+.transacoes
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding-left: 5px
+.item-transacao
+    display: flex
+    width: calc( 100% - 20px )
+    justify-content: space-between
+.lixeira
+    width: 15px
+    height: 15px
+    &:hover
+        cursor: pointer
+
+        .despesas
+            width: 100%
+            flex-direction: column
+            margin-bottom: 10px
+            div
                 display: flex
-                justify-content: flex-end
-                cursor: pointer
-                font-family: Arial, Helvetica, sans-serif
-            .excluir
-                display: flex
-                justify-content: center
+                justify-content: space-between
                 align-items: center
-                button
-                    border-radius: 3px
-                    background-color: #DC5F00
-                    border: 0px
-                    padding: 3px
-                    cursor: pointer
+                padding-left: 5px
+.excluirTransacao
+    width: auto
+    height: auto
+    padding: 10px
+    display: flex
+    flex-direction: column
+    position: absolute
+    top: 40%
+    left: 50%
+    background-color: #a3a5aa
+    border-radius: 8px
+    .fecharExclusao
+        display: flex
+        justify-content: flex-end
+        cursor: pointer
+        font-family: Arial, Helvetica, sans-serif
+    .excluir
+        display: flex
+        justify-content: center
+        align-items: center
+        button
+            border-radius: 3px
+            background-color: #DC5F00
+            border: 0px
+            padding: 3px
+            cursor: pointer
 @media print
     * 
         visibility: hidden

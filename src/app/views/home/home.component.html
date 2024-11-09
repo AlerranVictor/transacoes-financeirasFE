@@ -32,26 +32,39 @@
         </div>
     </section>
 
-    <section>
+    <section class="resultados-section">
         <div class="resultados">
-            <div class="receitas">
+            <div class="campo-receitas">
                 <p class="tipo">Receitas</p>
-                <div *ngFor="let transacao of listaTransacoes?.receitas" (click)="pegarTransacaoEMostrarExclusao(transacao)">
-                    <p>{{transacao.categoria}}</p>
-                    <p>{{transacao.valorFormatado}}</p>
+                <div class="transacoes" *ngFor="let transacao of listaTransacoes?.receitas">
+                    <div class="item-transacao">
+                        <p>{{transacao.categoria}}</p>
+                        <p>{{transacao.valor | currency: 'BRL' : 'symbol' : '1.2-2'}}</p>
+                    </div>
+                    <div class="lixeira" (click)="pegarIdTransacaoEMostrarExclusao(transacao.id)">
+                        <img src="/assets/img/lixeira.png" alt="" width="15px" height="15px">
+                    </div>
                 </div>
             </div>
             <div class="despesas">
                 <p class="tipo">Despesas</p>
-                <div *ngFor="let transacao of listaTransacoes?.despesas" (click)="pegarTransacaoEMostrarExclusao(transacao)">
-                    <p>{{transacao.categoria}}</p>
-                    <p>{{transacao.valorFormatado}}</p>
+                <div class="transacoes" *ngFor="let transacao of listaTransacoes?.despesas">
+                    <div class="item-transacao">
+                        <p>{{transacao.categoria}}</p>
+                        <p>{{ transacao.valor | currency: 'BRL' : 'symbol' : '1.2-2' }}</p>
+                    </div>
+                    <div class="lixeira" (click)="pegarIdTransacaoEMostrarExclusao(transacao.id)">
+                        <img src="/assets/img/lixeira.png" alt="" width="15px" height="15px">
+                    </div>
                 </div>
             </div>
 
         </div>
         <div class="total">
-            
+            <p class="tipo">Total</p>
+            <div>
+                <p>{{ listaTransacoes.total | currency: 'BRL' : 'symbol' : '1.2-2' }}</p>
+            </div>
         </div>
 
         <div class="excluirTransacao" *ngIf="mostrarExclusao">
@@ -59,10 +72,10 @@
                 <h3 (click)="mostrarExclusao = false">X</h3>
             </div>
             <div>
-                <p>Deseja excluir a transacao: {{transacaoToDelete?.categoria}}?</p>
+                <p>Deseja excluir a transacao?</p>
             </div>
             <div class="excluir">
-                <button (click)="excluirTransacao()">Excluir transação</button>
+                <button (click)="excluirTransacao(idTransacaoToDelete)">Excluir transação</button>
             </div>
         </div>
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Transacoes } from '../models/transacoes';
+import { Transacao } from '../models/transacao';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class TransacoesService {
   getTransacoes(): Observable<Transacoes> {
     return this.http.get<Transacoes>(this.urlBase);
   }
-  postTransacao(transacao: any): Observable<any>{
+  postTransacao(transacao: Transacao): Observable<Transacao>{
     return this.http.post<any>(this.urlBase, transacao);
   }
   deleteTransacao(id: number | undefined): Observable<void>{

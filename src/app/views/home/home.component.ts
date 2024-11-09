@@ -10,13 +10,14 @@ import { TransacoesService } from 'src/app/services/transacoes.service';
 })
 export class HomeComponent {
 
-  constructor(private transacao: TransacoesService) {}
+  constructor(private transacaoService: TransacoesService) {}
 
-  listaTransacoes: Transacoes = { receitas: [], despesas: [] };
+  listaTransacoes: Transacoes = {
+    receitas: [], despesas: [],
+    total: 0
+  };
 
-  transacaoToDelete: Transacao | null = null;
-
-  idTransacao: number | null = null; 
+  idTransacaoToDelete: number = 0;
   tipoTransacao: string = '';
   categoria: string = '';
   valor: number = 0;
@@ -28,31 +29,31 @@ export class HomeComponent {
   }
 
   carregarTransacoes(){
-    this.transacao.getTransacoes().subscribe((transacoesRecebidas: Transacoes) => {
+    this.transacaoService.getTransacoes().subscribe((transacoesRecebidas: Transacoes) => {
       this.listaTransacoes = transacoesRecebidas;
-      console.log(transacoesRecebidas);
     })
   }
 
   enviarTransacao(categoria: string, valor: number){
     const transacao = {
+      id: 0,
       tipo: this.tipoTransacao,
       categoria: categoria,
       valor: valor
     };
 
     if(transacao.tipo === 'Despesa' && valor < 0){
-      this.transacao.postTransacao(transacao).subscribe(response => {
-        console.log("Transação enviada: ", response);
-        this.carregarTransacoes();
-        this.limparCampos();
+      this.transacaoService.postTransacao(transacao).subscribe(response => {
+        this.listaTransacoes.despesas.push(response);
+        this.listaTransacoes.total += response.valor;
       })
+      this.limparCampos();
     } else if (transacao.tipo === 'Receita' && valor > 0) {
-      this.transacao.postTransacao(transacao).subscribe(response => {
-        console.log("Transação enviada: ", response);
-        this.carregarTransacoes();
-        this.limparCampos();
+      this.transacaoService.postTransacao(transacao).subscribe(response => {
+        this.listaTransacoes.receitas.push(response);
+        this.listaTransacoes.total += response.valor;
       })
+      this.limparCampos();
     } else {
       alert("Preencha os dados corretamente")
     }
@@ -64,20 +65,20 @@ export class HomeComponent {
     this.valor = 0;
   }
 
-  pegarTransacaoEMostrarExclusao(transacao: Transacao){
-    this.transacaoToDelete = transacao;
+  pegarIdTransacaoEMostrarExclusao(id: number){
     this.mostrarExclusao = true;
+    this.idTransacaoToDelete = id;
   }
 
-  excluirTransacao(){
-    this.transacao.deleteTransacao(this.transacaoToDelete?.id).subscribe(() => {
-      this.carregarTransacoes();
-    },
-    error => {
-      console.error("Erro ao deletar transação: ", error);
-    }
-  );
-  this.mostrarExclusao = false;
+  excluirTransacao(id: number){
+    this.transacaoService.deleteTransacao(id).subscribe(
+      () =>{
+      if(this.listaTransacoes){
+        this.listaTransacoes.receitas = this.listaTransacoes.receitas.filter(transacao => transacao.id !== id);
+        this.listaTransacoes.despesas = this.listaTransacoes.despesas.filter(transacao => transacao.id !== id);
+      }
+    })
+    this.mostrarExclusao = false;
   }
 
 }
