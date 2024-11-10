@@ -17,10 +17,16 @@ export class HomeComponent {
     total: 0
   };
 
-  idTransacaoToDelete: number = 0;
+  transacaoToDelete: Transacao = {
+    id: 0,
+    tipo: '',
+    categoria: '',
+    valor: 0
+  }
+
   tipoTransacao: string = '';
   categoria: string = '';
-  valor: number = 0;
+  valor: number | null = null;
 
   mostrarExclusao: boolean = false;
 
@@ -34,7 +40,12 @@ export class HomeComponent {
     })
   }
 
-  enviarTransacao(categoria: string, valor: number){
+  enviarTransacao(categoria: string, valor: number | null){
+    if(valor === null){
+      console.error("O valor não pode ser nulo");
+      return;
+    }
+
     const transacao = {
       id: 0,
       tipo: this.tipoTransacao,
@@ -42,43 +53,43 @@ export class HomeComponent {
       valor: valor
     };
 
-    if(transacao.tipo === 'Despesa' && valor < 0){
+    if(transacao.tipo === 'Despesa'){
+      transacao.valor = -Math.abs(valor);
       this.transacaoService.postTransacao(transacao).subscribe(response => {
         this.listaTransacoes.despesas.push(response);
         this.listaTransacoes.total += response.valor;
       })
       this.limparCampos();
-    } else if (transacao.tipo === 'Receita' && valor > 0) {
+    } else if (transacao.tipo === 'Receita') {
+      transacao.valor = Math.abs(valor);
       this.transacaoService.postTransacao(transacao).subscribe(response => {
         this.listaTransacoes.receitas.push(response);
         this.listaTransacoes.total += response.valor;
       })
       this.limparCampos();
-    } else {
-      alert("Preencha os dados corretamente")
     }
   }
 
   limparCampos(){
     this.tipoTransacao = '';
     this.categoria = '';
-    this.valor = 0;
+    this.valor = null;
   }
 
-  pegarIdTransacaoEMostrarExclusao(id: number){
+  pegarTransacaoEMostrarExclusao(transacao: Transacao){
     this.mostrarExclusao = true;
-    this.idTransacaoToDelete = id;
+    this.transacaoToDelete = transacao;
   }
 
-  excluirTransacao(id: number){
-    this.transacaoService.deleteTransacao(id).subscribe(
+  excluirTransacao(){
+    this.transacaoService.deleteTransacao(this.transacaoToDelete.id).subscribe(
       () =>{
-      if(this.listaTransacoes){
-        this.listaTransacoes.receitas = this.listaTransacoes.receitas.filter(transacao => transacao.id !== id);
-        this.listaTransacoes.despesas = this.listaTransacoes.despesas.filter(transacao => transacao.id !== id);
+        this.listaTransacoes.receitas = this.listaTransacoes.receitas.filter(transacao => transacao.id !== this.transacaoToDelete.id);
+        this.listaTransacoes.despesas = this.listaTransacoes.despesas.filter(transacao => transacao.id !== this.transacaoToDelete.id);
+        this.listaTransacoes.total -= this.transacaoToDelete.valor;
+        this.mostrarExclusao = false;
       }
-    })
-    this.mostrarExclusao = false;
+    );
   }
 
 }

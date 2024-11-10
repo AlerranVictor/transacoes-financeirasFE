@@ -41,7 +41,7 @@
                         <p>{{transacao.categoria}}</p>
                         <p>{{transacao.valor | currency: 'BRL' : 'symbol' : '1.2-2'}}</p>
                     </div>
-                    <div class="lixeira" (click)="pegarIdTransacaoEMostrarExclusao(transacao.id)">
+                    <div class="lixeira" (click)="pegarTransacaoEMostrarExclusao(transacao)">
                         <img src="/assets/img/lixeira.png" alt="" width="15px" height="15px">
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                         <p>{{transacao.categoria}}</p>
                         <p>{{ transacao.valor | currency: 'BRL' : 'symbol' : '1.2-2' }}</p>
                     </div>
-                    <div class="lixeira" (click)="pegarIdTransacaoEMostrarExclusao(transacao.id)">
+                    <div class="lixeira" (click)="pegarTransacaoEMostrarExclusao(transacao)">
                         <img src="/assets/img/lixeira.png" alt="" width="15px" height="15px">
                     </div>
                 </div>
@@ -69,13 +69,13 @@
 
         <div class="excluirTransacao" *ngIf="mostrarExclusao">
             <div class="fecharExclusao">
-                <h3 (click)="mostrarExclusao = false">X</h3>
+                <h4 (click)="mostrarExclusao = false">X</h4>
             </div>
             <div>
                 <p>Deseja excluir a transacao?</p>
             </div>
             <div class="excluir">
-                <button (click)="excluirTransacao(idTransacaoToDelete)">Excluir transação</button>
+                <button (click)="excluirTransacao()">Excluir transação</button>
             </div>
         </div>
 
