@@ -21,11 +21,13 @@ export class HomeComponent {
     id: 0,
     tipo: '',
     categoria: '',
+    data: '',
     valor: 0
   }
 
   tipoTransacao: string = '';
   categoria: string = '';
+  data: string = '';
   valor: number | null = null;
 
   mostrarExclusao: boolean = false;
@@ -40,7 +42,7 @@ export class HomeComponent {
     })
   }
 
-  enviarTransacao(categoria: string, valor: number | null){
+  enviarTransacao(categoria: string, valor: number | null, data: string){
     if(valor === null){
       console.error("O valor não pode ser nulo");
       return;
@@ -50,6 +52,7 @@ export class HomeComponent {
       id: 0,
       tipo: this.tipoTransacao,
       categoria: categoria,
+      data: data,
       valor: valor
     };
 
@@ -73,6 +76,7 @@ export class HomeComponent {
   limparCampos(){
     this.tipoTransacao = '';
     this.categoria = '';
+    this.data = '';
     this.valor = null;
   }
 
