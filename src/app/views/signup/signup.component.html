@@ -1,0 +1,103 @@
+<main>
+    <h1>É um prazer ter você aqui!</h1>
+    <section class="menu-login">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input class="input"
+                    type="text"
+                    name="nome"
+                    ngModel
+                    #nome="ngModel"
+                    placeholder="Digite seu primeiro nome"
+                    minlength="3"
+                    required>
+                    <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="campo-erro">
+                        <small class="erro" *ngIf="nome.errors?.['required']">
+                            * O nome é obrigatório.
+                        </small>
+                        <small class="erro" *ngIf="nome.errors?.['minlength']">
+                            * O nome é curto demais.
+                        </small>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="sobrenome">Sobrenome</label>
+                <input class="input"
+                    type="text"
+                    name="sobrenome"
+                    ngModel
+                    #sobrenome="ngModel"
+                    placeholder="Digite seu sobrenome"
+                    minlength="3"
+                    required>
+                    <div *ngIf="sobrenome.invalid && (sobrenome.dirty || sobrenome.touched)" class="campo-erro">
+                        <small class="erro" *ngIf="sobrenome.errors?.['required']">
+                            * O sobrenome é obrigatório.
+                        </small>
+                        <small class="erro" *ngIf="sobrenome.errors?.['minlength']">
+                            * O sobrenome é curto demais.
+                        </small>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="input" 
+                    type="email"
+                    name="email"
+                    email
+                    ngModel
+                    #email="ngModel"
+                    placeholder="Digite seu e-mail"
+                    required>
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="campo-erro">
+                        <small class="erro" *ngIf="email.errors?.['required']">
+                            * O e-mail é obrigatório.
+                        </small>
+                        <small class="erro" *ngIf="email.errors?.['email']">
+                            * O e-mail não é válido.
+                        </small>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input class="input" 
+                    type="password"
+                    name="senha"
+                    ngModel
+                    #senha="ngModel"
+                    placeholder="Crie uma senha"
+                    minlength="8"
+                    required>
+                    <div *ngIf="senha.invalid && (senha.dirty || senha.touched)" class="campo-erro">
+                        <small class="erro" *ngIf="senha.errors?.['required']">
+                            * A senha é obrigatória.
+                        </small>
+                    </div>
+                    <div>
+                        <small>
+                            * A senha deve conter pelo menos 8 caracteres.
+                        </small>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="repetirSenha">Senha</label>
+                <input class="input" 
+                    type="password"
+                    name="repetirSenha"
+                    ngModel
+                    #repetirSenha="ngModel"
+                    placeholder="Digite novamente a senha"
+                    minlength="8"
+                    required>
+                    <div *ngIf="repetirSenha.dirty || repetirSenha.touched" class="campo-erro">
+                        <small class="erro" *ngIf="repetirSenha.value !== senha.value">
+                            * Repita a senha corretamente
+                        </small>
+                    </div>
+            </div>
+            <input class="button" type="submit" value="Criar conta">
+            <a routerLink="/login">Já possui uma conta?</a>
+        </form>
+    </section>
+</main>

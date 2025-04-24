@@ -1,0 +1,29 @@
+<main>
+    <h1>Bem-vindo(a) de volta!</h1>
+    <section class="menu-login">
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="input" 
+                type="email" 
+                id="email" 
+                name="email" 
+                [(ngModel)]="loginRequest.email" 
+                placeholder="Digite seu e-mail"
+                required>
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input class="input" 
+                type="password" 
+                id="senha" 
+                name="senha" 
+                [(ngModel)]="loginRequest.senha" 
+                placeholder="Digite sua senha"
+                required>
+            </div>
+            <button class="button" type="submit">Entrar</button>
+            <a routerLink="/signup">Ainda não possui uma conta?</a>
+        </form>
+    </section>
+</main>

@@ -1,0 +1,51 @@
+<main>
+    <header class="header">
+        <div>
+            <img src="/assets/img/home-icon.svg" alt="ícone para voltar para a página home" routerLink="/home">
+            <h2>Todas as movimentações</h2>
+        </div>
+    </header>
+    <section>
+        <div class="menu">
+            <div class="balanco">
+                <h3>Receita mensal</h3>
+                <h3>R$ 2.999,00</h3>
+            </div>
+            <div class="balanco">
+                <h3>Receita mensal</h3>
+                <h3>R$ 2.999,00</h3>
+            </div>
+            <div class="balanco">
+                <h3>Receita mensal</h3>
+                <h3>R$ 2.999,00</h3>
+            </div>
+            <div class="balanco">
+                <h3>Receita mensal</h3>
+                <h3>R$ 2.999,00</h3>
+            </div>
+        </div>
+
+        <div class="menu">
+            <div id="inputs-busca">
+                <div class="inputs">
+                    <h4>Ano</h4>
+                    <select name="ano">
+                        <option *ngFor="let ano of listaAnos" [value]="ano">{{ano}}</option>
+                    </select>
+                </div>
+                <div class="inputs">
+                    <h4>Mês</h4>
+                    <select name="mes">
+                        <option *ngFor="let mes of listaMeses" [value]="mes">{{mes}}</option>
+                    </select>
+                </div>
+                <div class="inputs">
+                    <button class="button">Buscar</button>
+                </div>
+            </div>  
+        </div>
+    </section>
+    <section>
+        
+    </section>
+</main>
