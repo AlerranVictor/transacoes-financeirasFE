@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TransacoesService } from 'src/app/services/transacoes.service';
 
 @Component({
   selector: 'app-transacoes',
@@ -15,5 +16,7 @@ export class TransacoesComponent {
     'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
   ];
+
+  constructor(private transacoes: TransacoesService) {}
 
 }

@@ -37,6 +37,7 @@ main
     top: -40px
     width: 40%
     min-width: 310px 
+    height: min-content
     padding: 15px 13px
     background-color: $menu
     border-radius: 5px
@@ -66,6 +67,24 @@ main
         font: 600 16px "Regular", sans-serif
         &:hover
             cursor: pointer
+
+.cadastrarBtn
+    display: flex
+    justify-content: space-evenly
+    align-items: center
+    gap: 5px
+    padding: 7px 15px
+    border: 2px solid rgba($label, 0.1)
+    border-radius: 5px
+    cursor: pointer
+
+.receitaBtn
+    &:hover
+        border: 2px solid $receita
+.despesaBtn
+    &:hover
+        border: 2px solid $despesa
+
 .input
     border: none
     border-radius: 5px

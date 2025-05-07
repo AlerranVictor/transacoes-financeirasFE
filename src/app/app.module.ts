@@ -10,6 +10,7 @@ import { LoginComponent } from './views/login/login.component';
 import { SignupComponent } from './views/signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TransacoesComponent } from './views/transacoes/transacoes.component';
+import { CadmovimentacaoComponent } from './views/cadmovimentacao/cadmovimentacao.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TransacoesComponent } from './views/transacoes/transacoes.component';
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    TransacoesComponent
+    TransacoesComponent,
+    CadmovimentacaoComponent
   ],
   imports: [
     BrowserModule,

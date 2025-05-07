@@ -1,0 +1,22 @@
+<div>
+    <h3>Cadastrar movimentação</h3>
+    <div id="cadastrar-movimentacao">
+        <button class="cadastrarBtn receitaBtn">
+            <img src="/assets/img/receita-icon.svg" alt="icone de cadastramento de receita" width="30px" height="30px">
+            <h3>Receita</h3>
+        </button>
+        <button class="cadastrarBtn despesaBtn">
+            <img src="/assets/img/despesa-icon.svg" alt="icone de cadastramentode despesa" width="30px" height="30px">
+            <h3>Despesa</h3>
+        </button>
+    </div>
+</div>
+<div>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="form-group">
+        </div>
+    </form>
+</div>
+<div id="todas-movimentacoes">
+    <a routerLink="/transacoes"><h4>Ver todas as movimentações</h4></a>
+</div>

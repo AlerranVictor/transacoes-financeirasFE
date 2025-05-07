@@ -31,25 +31,9 @@
             </div>
         </div>
 
-        <div class="menu" id="cadastramento">
-            <div>
-                <h3>Cadastrar movimentação</h3>
-                <div id="cadastrar-movimentacao">
-                    <button class="cadastrar" id="receita">
-                        <img src="/assets/img/receita-icon.svg" alt="icone de cadastramento de receita" width="30px" height="30px">
-                        <h3>Receita</h3>
-                    </button>
-                    <button class="cadastrar" id="despesa">
-                        <img src="/assets/img/despesa-icon.svg" alt="icone de cadastramentode despesa" width="30px" height="30px">
-                        <h3>Despesa</h3>
-                    </button>
-                </div>
-            </div>
-            <div id="todas-movimentacoes">
-                <a routerLink="/transacoes"><h4>Ver todas as movimentações</h4></a>
-            </div>
-        </div>
+        <app-cadmovimentacao class="menu" id="cadastramento"></app-cadmovimentacao>
     </section>
+
     <section>
         <div class="menu" id="ultimas-movimentacoes">
             <h3>Últimas movimentações</h3>
