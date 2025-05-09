@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { TransacoesService } from 'src/app/services/transacoes.service';
 
 @Component({
   selector: 'app-cadmovimentacao',
@@ -8,7 +9,14 @@ import { NgForm } from '@angular/forms';
 })
 export class CadmovimentacaoComponent {
 
+  constructor(private transacoes: TransacoesService){}
+
+  btnCadastrar: 'receita' | 'despesa' | null = null;
+
   onSubmit(form: NgForm){
+    if(form.valid && this.btnCadastrar != null){
+
+    }
     console.log("Brasil!!!")
   }
 }

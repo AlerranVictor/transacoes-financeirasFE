@@ -56,6 +56,8 @@ main
     display: flex
     flex-direction: column
     margin-bottom: 20px
+    width: 100%
+    
 
 .button
         border-radius: 5px
@@ -78,26 +80,20 @@ main
     border-radius: 5px
     cursor: pointer
 
-.receitaBtn
-    &:hover
-        border: 2px solid $receita
-.despesaBtn
-    &:hover
-        border: 2px solid $despesa
-
 .input
     border: none
     border-radius: 5px
     background-color: $input-bg
     height: 30px
-    width: 290px
+    min-width: 290px
+    max-width: 100%
     margin-top: 5px
     padding-left: 10px
     box-shadow: 0px 1px 1px rgba($label, 0.10)
     &:focus
         outline: none
         border: 1px rgba($button-bg-icons, 1) solid
-    &:placeholder-shown
+    &:placeholder
         color: $input-preview
 
 .erro

@@ -1,20 +1,69 @@
 <div>
     <h3>Cadastrar movimentação</h3>
     <div id="cadastrar-movimentacao">
-        <button class="cadastrarBtn receitaBtn">
+        <button class="cadastrarBtn receitaBtn" [ngClass]="{'receita-ativa': btnCadastrar == 'receita'}" (click)="btnCadastrar = 'receita'">
             <img src="/assets/img/receita-icon.svg" alt="icone de cadastramento de receita" width="30px" height="30px">
             <h3>Receita</h3>
         </button>
-        <button class="cadastrarBtn despesaBtn">
+        <button class="cadastrarBtn despesaBtn" [ngClass]="{'despesa-ativa': btnCadastrar == 'despesa'}" (click)="btnCadastrar = 'despesa'">
             <img src="/assets/img/despesa-icon.svg" alt="icone de cadastramentode despesa" width="30px" height="30px">
             <h3>Despesa</h3>
         </button>
     </div>
 </div>
-<div>
+
+<div id="form-cadmovimentacao">
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <input class="input"
+                type="text"
+                name="descricao"
+                ngModel
+                #descricao="ngModel"
+                placeholder="Ex.: Venda de brigadeiros"
+                minlength="4"
+                required>
+                <div *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="campo-erro">
+                    <small class="erro">
+                        * O campo descrição é obrigatório.
+                    </small>
+                </div>
         </div>
+        <div class="form-group">
+            <label for="valor">Valor</label>
+            <input class="input" 
+                type="number"
+                name="valor"
+                ngModel
+                #valor="ngModel"
+                placeholder="Digite o valor"
+                min="0.01"
+                required>
+                <div *ngIf="valor.invalid && (valor.dirty || valor.touched)" class="campo-erro">
+                    <small class="erro" *ngIf="valor.errors?.['required']">
+                        * O campo valor é obrigatório.
+                    </small>
+                    <small class="erro" *ngIf="valor.errors?.['min']">
+                        * O valor deve ser maior que R$ 0,00.
+                    </small>
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="data">Data</label>
+            <input class="input" 
+                type="date"
+                name="data"
+                ngModel
+                #data="ngModel"
+                required>
+                <div *ngIf="data.invalid && (data.dirty || data.touched)" class="campo-erro">
+                    <small class="erro">
+                        * A data é obrigatória.
+                    </small>
+                </div>
+        </div>
+        <input class="button" type="submit" value="Salvar">
     </form>
 </div>
 <div id="todas-movimentacoes">
