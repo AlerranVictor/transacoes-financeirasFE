@@ -15,8 +15,10 @@ export class CadmovimentacaoComponent {
 
   onSubmit(form: NgForm){
     if(form.valid && this.btnCadastrar != null){
+      //chamar cadastro da transação
 
+      //limpar formulário
+      form.resetForm();
     }
-    console.log("Brasil!!!")
   }
 }
