@@ -11,6 +11,7 @@ import { SignupComponent } from './views/signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TransacoesComponent } from './views/transacoes/transacoes.component';
 import { CadmovimentacaoComponent } from './views/cadmovimentacao/cadmovimentacao.component';
+import { MobileFooterComponent } from './views/mobile-footer/mobile-footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CadmovimentacaoComponent } from './views/cadmovimentacao/cadmovimentaca
     LoginComponent,
     SignupComponent,
     TransacoesComponent,
-    CadmovimentacaoComponent
+    CadmovimentacaoComponent,
+    MobileFooterComponent
   ],
   imports: [
     BrowserModule,
