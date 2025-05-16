@@ -1,0 +1,21 @@
+@import '../../styles/variaveis.sass'
+    
+#painel-movimentacao
+    position: absolute
+    transform: translateY(-100%)
+    top: 0px
+    width: 90%
+    height: min-content
+    padding: 15px 13px
+    background-color: $menu
+    border-radius: 5px
+    border: 1px rgba(30, 30, 30, 0.05) solid
+    box-shadow: 0px 1px 50px rgba($label, 0.10)
+    &:focus
+        transform: translateY(-50%)
+
+#fechar-painel
+    justify-self: flex-end
+    border: 1px solid rgba($label, 0.30)
+    padding: 0px 4px
+    border-radius: 5px

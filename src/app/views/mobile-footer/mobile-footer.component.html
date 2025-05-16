@@ -1,8 +1,13 @@
+<section id="painel-movimentacao" *ngIf="ativarPainelCadastro">
+    <h3 (click)="ativarPainelCadastro = false" id="fechar-painel">X</h3>
+    <app-cadmovimentacao></app-cadmovimentacao>
+</section>
+
 <a routerLink="/home" class="footer-icon">
     <img src="/assets/img/homefooter-icon.svg" alt="ícone de rodapé para retornar à página inicial">
 </a>
-<a href="" class="footer-icon">
-    <img src="/assets/img/addfooter-icon.svg" alt="ícone para abrir o painel de cadastramento de transações">
+<a class="footer-icon">
+    <img (click)="ativarPainelCadastro = true" src="/assets/img/addfooter-icon.svg" alt="ícone para abrir o painel de cadastramento de transações">
 </a>
 <a routerLink="/transacoes" class="footer-icon">
     <img src="/assets/img/movsfooter-icon.svg" alt="ícone para acessar as movimentações">
