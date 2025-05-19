@@ -34,6 +34,9 @@ nav
 section
     width: 95%
     max-width: 1440px
+    display: flex
+    justify-content: space-between
+    
     h1
         font-size: 46px
         max-width: 450px
@@ -43,3 +46,19 @@ section
     button
         padding: 20px
         font: 600 16px "Regular", sans-serif
+#div-img
+    overflow: hidden
+    width: 50%
+    img
+        width: 100%
+
+@media screen and (max-width: 1080px)
+    section
+        flex-direction: column
+        gap: 30px
+    #div-img
+        width: 100%
+        display: flex
+        justify-content: flex-start
+        img
+            width: 70%
