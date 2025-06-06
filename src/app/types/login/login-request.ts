@@ -1,5 +1,5 @@
 export class LoginRequest {
-    constructor(public email: string = '', public senha?: string){
+    public email: string = '';
+    public senha: string = '';
 
-    }
 }

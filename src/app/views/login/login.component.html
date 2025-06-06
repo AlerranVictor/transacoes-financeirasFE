@@ -1,14 +1,15 @@
 <main>
     <h1>Bem-vindo(a) de volta!</h1>
     <section class="menu-login">
-        <form (ngSubmit)="onSubmit()">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input class="input" 
                 type="email" 
                 id="email" 
-                name="email" 
-                [(ngModel)]="loginRequest.email" 
+                name="email"
+                ngModel
+                #email="ngModel"
                 placeholder="Digite seu e-mail"
                 required>
             </div>
@@ -16,9 +17,10 @@
                 <label for="senha">Senha</label>
                 <input class="input" 
                 type="password" 
-                id="senha" 
-                name="senha" 
-                [(ngModel)]="loginRequest.senha" 
+                id="senha"
+                name="senha"
+                ngModel
+                #senha="ngModel"
                 placeholder="Digite sua senha"
                 required>
             </div>

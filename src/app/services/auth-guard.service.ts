@@ -11,7 +11,7 @@ export class AuthGuardService {
 
   canActivate(next: ActivatedRouteSnapshot, 
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const authToken = sessionStorage.getItem('authToken');
+      const authToken = sessionStorage.getItem('token');
 
       if(authToken){
         return true;

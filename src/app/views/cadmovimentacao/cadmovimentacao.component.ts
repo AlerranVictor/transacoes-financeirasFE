@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TransacoesService } from 'src/app/services/transacoes.service';
+import { TransacaoRequest } from 'src/app/types/transacao/transacaoRequest';
 
 @Component({
   selector: 'app-cadmovimentacao',
@@ -15,9 +16,15 @@ export class CadmovimentacaoComponent {
 
   onSubmit(form: NgForm){
     if(form.valid && this.btnCadastrar != null){
-      //chamar cadastro da transação
-
-      //limpar formulário
+      this.transacoes.postTransacao(new TransacaoRequest(this.btnCadastrar, form.value.descricao, form.value.data, form.value.valor)).subscribe({
+        next: (response) => {
+          console.log("Transação cadastrada com sucesso!");
+        },
+        error: (error) => {
+          console.log("Erro : ", error);
+        }
+      })
+      this.btnCadastrar = null;
       form.resetForm();
     }
   }
