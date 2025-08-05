@@ -13,7 +13,7 @@ export class LoginService {
   constructor(private httpClient: HttpClient) { }
 
   login(email: string, senha: string){
-    return this.httpClient.post<LoginResponse>(this.apiUrl + "/login", {email, senha}).pipe(
+    return this.httpClient.post<LoginResponse>(this.apiUrl + '/login', {email, senha}).pipe(
       tap((value) => {
         sessionStorage.setItem('token', value.token);
         sessionStorage.setItem('name', value.name);

@@ -29,37 +29,32 @@
         <div class="menu">
             <div id="inputs-busca">
                 <div class="inputs">
-                    <h4>Ano</h4>
-                    <select name="ano">
-                        <option *ngFor="let ano of listaAnos" [value]="ano">{{ano}}</option>
+                    <h4>Ano/Mês</h4>
+                    <select name="ano"
+                        [(ngModel)]="dataSelecionada">
+                        <option value="" disabled selected>Selecione</option>
+                        <option *ngFor="let ano of datasUsadasList" [value]="ano">{{ano}}</option>
                     </select>
                 </div>
                 <div class="inputs">
-                    <h4>Mês</h4>
-                    <select name="mes">
-                        <option *ngFor="let mes of listaMeses" [value]="mes">{{mes}}</option>
-                    </select>
-                </div>
-                <div class="inputs">
-                    <button class="button">Buscar</button>
+                    <button class="button" (click)="buscarTransacoesPorData(dataSelecionada)">Buscar</button>
                 </div>
             </div>  
         </div>
     </section>
 
-    <section>
+    <section id="resultados">
         <div id="transacoes">
-            <div id="data">
-                <small>Dia 21</small>
+            <div id="data" *ngFor="let transacao of transacoesList">
+                <small>{{transacao.data}}</small>
                 <div id="unTransacao">
                     <div id="nomeEimg">
                         <img src="/assets/img/receita-miniicone.svg">
                         <div>
-                            <h4>Trigo industrial</h4>
-                            <small>Venda</small>
+                            <h4>{{transacao.descricao}}</h4>
                         </div>
                     </div>
-                    <h4>R$ 329,65</h4>
+                    <h4>R$ {{transacao.valor}}</h4>
                 </div>
             </div>
         </div>

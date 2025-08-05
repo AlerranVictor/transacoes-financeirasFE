@@ -24,6 +24,6 @@ export class LoginComponent {
         console.log("Erro ao realizar login: ", error);
         alert("Email ou senha inválidos");
       }
-  }).unsubscribe();
+  });
 }
 }

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { timeout } from 'rxjs';
 import { TransacoesService } from 'src/app/services/transacoes.service';
+import { DateRequest } from 'src/app/types/transacao/date';
+import { TransacaoResponse } from 'src/app/types/transacao/transacaoResponse';
 
 @Component({
   selector: 'app-transacoes',
@@ -8,15 +11,25 @@ import { TransacoesService } from 'src/app/services/transacoes.service';
 })
 export class TransacoesComponent {
 
-  anoAtual: number = new Date().getFullYear();
-  mesAtual: string = new Date().toLocaleString('pt-br', { month: 'long'});
-
-  listaAnos: number[] = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015];
-  listaMeses: string[] = [
-    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-  ];
+  datasUsadasList: any[] = [];
+  transacoesList: TransacaoResponse[] = [];
+  dataSelecionada: string = '';
 
   constructor(private transacoes: TransacoesService) {}
+
+  ngOnInit(){
+    this.transacoes.getDatasUsadas().subscribe((data: any[]) => {
+      for(let i = 0; i<data.length; i++){
+        this.datasUsadasList[i] = data[i][0] + '/' + data[i][1];
+      }
+    });
+  }
+
+  buscarTransacoesPorData(data: string){
+    let dataParaBuscar = data.split('/').map(Number);
+    this.transacoes.getTransacoesPorData(new DateRequest(dataParaBuscar[0], dataParaBuscar[1])).subscribe((transacoes: TransacaoResponse[]) => {
+      this.transacoesList = transacoes;
+    })
+  }
 
 }

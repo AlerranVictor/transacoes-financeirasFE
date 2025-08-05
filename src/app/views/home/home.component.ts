@@ -9,6 +9,8 @@ import { NgForm } from '@angular/forms';
 
 export class HomeComponent {
 
+  nomeUsuario: string = sessionStorage.getItem('name') || '';
+
   tipoTransacao: string = '';
   mostrarSaldos: boolean = true;
   mostrarPainelCadastro: boolean = false;

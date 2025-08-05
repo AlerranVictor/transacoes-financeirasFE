@@ -11,9 +11,9 @@ export class AuthGuardService {
 
   canActivate(next: ActivatedRouteSnapshot, 
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const authToken = sessionStorage.getItem('token');
+      const token = sessionStorage.getItem('token');
 
-      if(authToken){
+      if(token){
         return true;
       } else{
         this.router.navigate(['/login']);
