@@ -9,9 +9,13 @@ import { DateRequest } from '../types/transacao/date';
 })
 export class TransacoesService {
 
-  apiUrl: string = "http://localhost:8080/transacoes"
+  apiUrl: string = "https://transacoes-financeiras-production.up.railway.app/transacoes"
 
   constructor(private client: HttpClient) { }
+
+  getSaldo(){
+    return this.client.get<number>(this.apiUrl + '/saldo', { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}`}});
+  }
 
   postTransacao(transacao: TransacaoRequest){
     return this.client.post<string>(this.apiUrl + '/create', transacao, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } });

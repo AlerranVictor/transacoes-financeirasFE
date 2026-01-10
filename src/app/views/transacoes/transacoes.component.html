@@ -10,19 +10,15 @@
         <div class="menu">
             <div class="balanco">
                 <h3>Receita mensal</h3>
-                <h3>R$ 2.999,00</h3>
+                <h3 id="receita">R$ {{receitaMensal}}</h3>
             </div>
             <div class="balanco">
-                <h3>Receita mensal</h3>
-                <h3>R$ 2.999,00</h3>
+                <h3>Despesa mensal</h3>
+                <h3 id="despesa">R$ {{despesaMensal}}</h3>
             </div>
             <div class="balanco">
-                <h3>Receita mensal</h3>
-                <h3>R$ 2.999,00</h3>
-            </div>
-            <div class="balanco">
-                <h3>Receita mensal</h3>
-                <h3>R$ 2.999,00</h3>
+                <h3>Lucro mensal</h3>
+                <h3 id="lucro">R$ {{lucroMensal}}</h3>
             </div>
         </div>
 
@@ -49,7 +45,8 @@
                 <small>{{transacao.data}}</small>
                 <div id="unTransacao">
                     <div id="nomeEimg">
-                        <img src="/assets/img/receita-miniicone.svg">
+                        <img *ngIf="transacao.tipo.toLocaleLowerCase() === 'receita'" src="/assets/img/receita-miniicone.svg">
+                        <img *ngIf="transacao.tipo.toLocaleLowerCase() === 'despesa'" src="/assets/img/despesa-miniicone.svg">
                         <div>
                             <h4>{{transacao.descricao}}</h4>
                         </div>
@@ -57,6 +54,7 @@
                     <h4>R$ {{transacao.valor}}</h4>
                 </div>
             </div>
+            <p *ngIf="transacoesList.length == 0">Suas transações aparecerão aqui!</p>
         </div>
     </section>
 

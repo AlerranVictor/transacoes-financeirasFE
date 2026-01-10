@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { timeout } from 'rxjs';
 import { TransacoesService } from 'src/app/services/transacoes.service';
 import { DateRequest } from 'src/app/types/transacao/date';
 import { TransacaoResponse } from 'src/app/types/transacao/transacaoResponse';
@@ -15,6 +14,10 @@ export class TransacoesComponent {
   transacoesList: TransacaoResponse[] = [];
   dataSelecionada: string = '';
 
+  receitaMensal: number = Number(sessionStorage.getItem('receitaMensal')) || 0;
+  despesaMensal: number = Number(sessionStorage.getItem('despesaMensal')) || 0;
+  lucroMensal: number = Number(sessionStorage.getItem('lucroMensal')) || 0;
+
   constructor(private transacoes: TransacoesService) {}
 
   ngOnInit(){
@@ -29,7 +32,7 @@ export class TransacoesComponent {
     let dataParaBuscar = data.split('/').map(Number);
     this.transacoes.getTransacoesPorData(new DateRequest(dataParaBuscar[0], dataParaBuscar[1])).subscribe((transacoes: TransacaoResponse[]) => {
       this.transacoesList = transacoes;
-    })
+    });
   }
 
 }

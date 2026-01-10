@@ -8,7 +8,7 @@ import { tap } from 'rxjs';
 })
 export class LoginService {
 
-  apiUrl: string = "http://localhost:8080/auth";
+  apiUrl: string = "https://transacoes-financeiras-production.up.railway.app/auth";
 
   constructor(private httpClient: HttpClient) { }
 

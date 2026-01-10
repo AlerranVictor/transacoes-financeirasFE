@@ -10,7 +10,7 @@
             <div id="saldo">
                 <div id="saldo-atual">
                     <h3>Saldo atual</h3>
-                    <h1 *ngIf="mostrarSaldos">R$ 2.399,90</h1>
+                    <h1 *ngIf="mostrarSaldos">{{saldo}}</h1>
                     <h1 *ngIf="!mostrarSaldos">-----</h1>
                 </div>
                 <div id="ocultar-saldo">
@@ -20,12 +20,12 @@
             <div id="lucro-gasto">
                 <div id="lucro-mensal">
                     <h4>Lucro mensal</h4>
-                    <h2 *ngIf="mostrarSaldos">R$ 1.299,80</h2>
+                    <h2 *ngIf="mostrarSaldos">R$ {{lucroMensal}}</h2>
                     <h2 *ngIf="!mostrarSaldos">-----</h2>
                 </div>
                 <div id="gasto-mensal">
                     <h4>Gasto mensal</h4>
-                    <h2 *ngIf="mostrarSaldos">R$ 1.500,21</h2>
+                    <h2 *ngIf="mostrarSaldos">R$ {{despesaMensal}}</h2>
                     <h2 *ngIf="!mostrarSaldos">-----</h2>
                 </div>
             </div>
@@ -41,7 +41,8 @@
                 <small>Data da movimentação</small>
                 <div>
                     <h4>Nome movimentação</h4>
-                    <h4>R$ 2.000,99</h4>
+                    <h4 *ngIf="mostrarSaldos">R$ 2.000,99</h4>
+                    <h4 *ngIf="!mostrarSaldos">-----</h4>
                 </div>
                 <div>
                     <small>Descrição</small>

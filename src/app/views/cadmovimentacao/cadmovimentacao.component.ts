@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { timeInterval, timeout } from 'rxjs';
 import { TransacoesService } from 'src/app/services/transacoes.service';
 import { TransacaoRequest } from 'src/app/types/transacao/transacaoRequest';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-cadmovimentacao',
@@ -11,7 +11,7 @@ import { TransacaoRequest } from 'src/app/types/transacao/transacaoRequest';
 })
 export class CadmovimentacaoComponent {
 
-  constructor(private transacoes: TransacoesService){}
+  constructor(private transacoes: TransacoesService, private home: HomeComponent){}
 
   btnCadastrar: 'receita' | 'despesa' | null = null;
 
@@ -19,12 +19,13 @@ export class CadmovimentacaoComponent {
     if(form.valid && this.btnCadastrar != null){
       this.transacoes.postTransacao(new TransacaoRequest(this.btnCadastrar, form.value.descricao, form.value.data, form.value.valor)).subscribe({
         next: (response) => {
-          console.log("Transação cadastrada com sucesso!");
+          console.log("Response: ", response);
         },
         error: (error) => {
           console.log("Erro : ", error);
         }
       })
+      this.home.attReceitaDespesa(this.btnCadastrar, form.value.valor, new Date(form.value.data + 'T00:00:00'));
       this.btnCadastrar = null;
       form.resetForm();
     }
